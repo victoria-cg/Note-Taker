@@ -13,17 +13,22 @@ const PORT = 3001
 app.use(express.static('public'));
 
 //get index.html to display the landing page
-app.get('/', (request, response) => {
+app.get('/', (req, res) => {
 
-    response.sendFile(path.join(__dirname, 'public/index.html'));
+    res.sendFile(path.join(__dirname, 'public/index.html'));
   });
+
+  //TO DO: Retrieve notes page when link clicked from main page
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/notes.html'));
+});
   
-  //set server to listen on port 3001 specified in const PORT
+  //set server to listen on port 3001 specified in const PORT, need to add "or" statement to use heroku port when deployed?
   app.listen(PORT, () =>
     console.log(`Server listening at http://localhost:${PORT}`)
   );
 
-//TO DO: Retrieve notes page when link clicked from main page
+
 // TO DO: connect note button functionality
 // TO DO: post request to write new note to data base
 // TO DO: get request for saved notes and render new note button at same time
