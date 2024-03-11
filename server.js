@@ -1,5 +1,8 @@
 //import express so it can be used by server.js
 const express = require('express');
+
+//import file system package for node.js
+const fs = require('fs');
 //import 'path' node.js package: resolves path of files on the server
 const path = require('path');
 
@@ -21,6 +24,23 @@ app.get('/', (req, res) => {
   //TO DO: Retrieve notes page when link clicked from main page
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/notes.html'));
+ 
+});
+
+ //TO DO: Retrieve/read notes in db.json
+app.get('/api/notes', (req, res) => {
+  console.info(`${req.method} request received for notes`);
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err){
+        console.err('Error reading file', err);
+        res.status(500).send('Error reading file');
+        return;
+      } 
+      else{
+        const notes =JSON.parse(data);
+        res.json(notes);
+      } 
+    })
 });
   
   //set server to listen on port 3001 specified in const PORT, need to add "or" statement to use heroku port when deployed?
