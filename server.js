@@ -6,6 +6,8 @@ const noteDatabase = require('./db/db.json');
 
 //import file system package for node.js
 const fs = require('fs');
+//import uuid generator from helpers folder
+const uuid = require('./helpers/uuid');
 //import 'path' node.js package: resolves path of files on the server
 const path = require('path');
 const { stringify } = require('querystring');
@@ -18,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 //select the port on which the express.js server will run
 const PORT = 3001
 
-//middleware for static files, points to public directory
+//middleware for static files, points to public directory so that we can get all the files from that folder without many individual routes
 app.use(express.static('public'));
 
 //get index.html to display the landing page
@@ -49,6 +51,7 @@ app.get('/api/notes', (req, res) => {
 });
 
 //post request to write new note to database, updated note list will be rendered once send back to client as a response.json(stringNotes)
+//follow activity 11.2 for setup of saving note with uuid
 app.post('/api/notes', (req, res) =>{
 console.info(`${req.method} request received to save new note`);
 //assign items in req.body using destructuring: got error from this?- commented out
@@ -85,7 +88,7 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
 
 
 // TO DO: get request for specific saved notes
-// GET route for specific title, add UUID to give notes a specific ID?
+// GET route for specific title, add UUID to give notes a specific ID? USE ID instead of title to match index.js?
 app.get('/api/notes/:title', (req, res) => {
   // make title lowercase
   const retrievedTitle = req.params.title.toLowerCase();
@@ -102,6 +105,7 @@ app.get('/api/notes/:title', (req, res) => {
 });
 
 // TO DO: connect functionality for starting a new note/clicking 'new note'
+
 //BONUS TO DO: add delete route for requests to delete notes
   
  //get * handles an invalid route by returning the landing page 
