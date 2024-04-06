@@ -14,7 +14,7 @@ Provide instructions and examples for use. Include screenshots as needed.
 
 To use the app, click the get started button as pictured in the screenshot, and enter the notes you wish to save.  The newly written notes will be shown on screen once saved. The app can be acessed at the following URL: https://polar-wildwood-78954-0e40ca0d7bc7.herokuapp.com/
 
-    ![screen shot of note taker app home page](public/assets/images/screenshotNoteTaker.png)
+![screen shot of note taker app home page](public/assets/images/screenshotNoteTaker.png)
 
 
 ## Credits
