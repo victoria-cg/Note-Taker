@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //select the port on which the express.js server will run
-const PORT = 3001
+const PORT = process.env.PORT || 3001;
 
 //middleware for static files, points to public directory so that we can get all the files from that folder without many individual routes
 app.use(express.static('public'));
